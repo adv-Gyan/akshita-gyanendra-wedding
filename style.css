@@ -776,10 +776,12 @@ section { padding: 100px 20px; position: relative; }
   .section-title { font-size: 2.5rem; }
   
   .countdown-separator { display: none; }
-  .countdown-wrap { gap: 10px; }
-  .countdown-ring { width: 90px; height: 90px; }
-  .ring-svg { transform: rotate(-90deg) scale(0.75); transform-origin: top left; }
-  .countdown-number { font-size: 1.8rem; }
+  .countdown-wrap { display: grid; grid-template-columns: repeat(2, 1fr); gap: 24px 16px; justify-items: center; margin-top: 30px; }
+  .countdown-ring { width: 100px; height: 100px; }
+  .ring-svg { transform: rotate(-90deg); }
+  .countdown-number { font-size: 2rem; }
+  .countdown-label { font-size: 0.75rem; letter-spacing: 2px; }
+  .countdown-subtext { font-size: 1.6rem; padding: 0 20px; }
   
   .families-grid { flex-direction: column; gap: 20px; }
   .family-divider { transform: rotate(90deg); margin: 10px 0; }
@@ -872,12 +874,13 @@ section { padding: 100px 20px; position: relative; }
 .music-btn {
   position: fixed;
   bottom: 28px;
-  right: 28px;
-  width: 52px;
-  height: 52px;
+  right: 20px;
+  bottom: calc(28px + env(safe-area-inset-bottom, 0px));
+  width: 56px;
+  height: 56px;
   border-radius: 50%;
-  background: rgba(139, 0, 0, 0.92);
-  border: 1px solid var(--gold);
+  background: rgba(139, 0, 0, 0.95);
+  border: 1.5px solid var(--gold);
   color: var(--gold);
   cursor: pointer;
   display: flex;
@@ -887,6 +890,7 @@ section { padding: 100px 20px; position: relative; }
   box-shadow: 0 4px 20px rgba(0,0,0,0.35);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
   backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
 }
 .music-btn:hover {
   transform: scale(1.12);
@@ -898,6 +902,14 @@ section { padding: 100px 20px; position: relative; }
 @keyframes musicPulse {
   0%, 100% { box-shadow: 0 4px 20px rgba(0,0,0,0.35), 0 0 0 0   rgba(191,149,63,0.5); }
   50%       { box-shadow: 0 4px 20px rgba(0,0,0,0.35), 0 0 0 14px rgba(191,149,63,0);  }
+}
+@media (max-width: 768px) {
+  .music-btn {
+    width: 52px;
+    height: 52px;
+    right: 16px;
+    bottom: calc(24px + env(safe-area-inset-bottom, 0px));
+  }
 }
 
 /* =========================================================================
