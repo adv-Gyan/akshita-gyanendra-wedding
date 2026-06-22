@@ -100,27 +100,34 @@ const confettiBurst = (function () {
 
   const playIcon  = btn.querySelector('.music-play-icon');
   const pauseIcon = btn.querySelector('.music-pause-icon');
-  
-  // Set initial volume to 0 for smooth fade-in
+
+  // Start silent
   audio.volume = 0;
-  
-  // Global fade function (attached to window so wax seal can trigger it)
+
+  // Fade helper — resolves immediately if already at target (prevents divide-by-zero)
   window.fadeAudio = function(audioElement, targetVolume, duration) {
     return new Promise(resolve => {
-      const step = 0.05;
-      const intervalDelay = duration / Math.abs((targetVolume - audioElement.volume) / step);
-      
       clearInterval(audioElement.fadeInterval);
-      audioElement.fadeInterval = setInterval(() => {
-        let newVolume = audioElement.volume;
-        if (newVolume < targetVolume) {
-          newVolume = Math.min(targetVolume, newVolume + step);
-        } else {
-          newVolume = Math.max(targetVolume, newVolume - step);
-        }
-        audioElement.volume = newVolume;
 
-        if (newVolume === targetVolume) {
+      const diff = Math.abs(targetVolume - audioElement.volume);
+      if (diff < 0.01) {
+        audioElement.volume = targetVolume;
+        resolve();
+        return;
+      }
+
+      const step          = 0.04;
+      const intervalDelay = duration / (diff / step);
+
+      audioElement.fadeInterval = setInterval(() => {
+        let v = audioElement.volume;
+        v = (v < targetVolume)
+          ? Math.min(targetVolume, v + step)
+          : Math.max(targetVolume, v - step);
+        audioElement.volume = v;
+
+        if (Math.abs(v - targetVolume) < 0.01) {
+          audioElement.volume = targetVolume;
           clearInterval(audioElement.fadeInterval);
           resolve();
         }
@@ -128,49 +135,63 @@ const confettiBurst = (function () {
     });
   };
 
-  window.toggleMusicState = function(forcePlay = false) {
-    if (audio.paused || forcePlay) {
-      audio.play().then(() => {
-        playIcon.style.display  = 'none';
-        pauseIcon.style.display = 'block';
-        btn.classList.add('playing');
-        window.fadeAudio(audio, 1, 1000); // 1-second fade in
-      }).catch(e => console.log('Audio play failed:', e));
+  // Explicit state flag — audio.paused is unreliable during fade on mobile Safari
+  let isPlaying    = false;
+  let isLoopFading = false;
+
+  function setPlayUI() {
+    playIcon.style.display  = 'none';
+    pauseIcon.style.display = 'block';
+    btn.classList.add('playing');
+  }
+  function setPauseUI() {
+    playIcon.style.display  = 'block';
+    pauseIcon.style.display = 'none';
+    btn.classList.remove('playing');
+  }
+
+  window.toggleMusicState = function(forcePlay) {
+    if (!isPlaying || forcePlay) {
+      // --- PLAY ---
+      isPlaying = true;
+      setPlayUI();
+      audio.play()
+        .then(() => window.fadeAudio(audio, 1, 1000))
+        .catch(err => {
+          console.warn('Audio play failed:', err);
+          isPlaying = false;
+          setPauseUI();
+        });
     } else {
-      window.fadeAudio(audio, 0, 800).then(() => {
+      // --- PAUSE ---
+      isPlaying = false;
+      isLoopFading = false;          // cancel any loop-fade in progress
+      clearInterval(audio.fadeInterval);
+      window.fadeAudio(audio, 0, 500).then(() => {
         audio.pause();
-        playIcon.style.display  = 'block';
-        pauseIcon.style.display = 'none';
-        btn.classList.remove('playing');
+        setPauseUI();
       });
     }
   };
 
+  // Single tap listener — touchend for instant response on mobile
   btn.addEventListener('click', () => window.toggleMusicState());
 
-  // Custom Loop Logic: Fade out at the end, then fade back in
-  let isLoopFading = false;
-  const FADE_OUT_SECS = 3; // Start fading out 3 seconds before the song ends
-  const FADE_IN_SECS = 2;  // Fade back in over 2 seconds
+  // Smooth loop: fade out 3 s before end, seek to 0, fade back in
+  const FADE_OUT_SECS = 3;
+  const FADE_IN_SECS  = 2;
 
   audio.addEventListener('timeupdate', () => {
-    if (!audio.duration || audio.paused) return;
-    
-    // If we're near the end of the song and not already fading
-    if (audio.duration - audio.currentTime <= FADE_OUT_SECS && !isLoopFading) {
+    if (!audio.duration || !isPlaying || isLoopFading) return;
+
+    if (audio.duration - audio.currentTime <= FADE_OUT_SECS) {
       isLoopFading = true;
-      
-      // Fade out
       window.fadeAudio(audio, 0, FADE_OUT_SECS * 1000).then(() => {
-        // Once faded out, if the user hasn't paused, seek to 0 and fade back in
-        if (!audio.paused) {
-          audio.currentTime = 0;
-          window.fadeAudio(audio, 1, FADE_IN_SECS * 1000).then(() => {
-            isLoopFading = false;
-          });
-        } else {
+        if (!isPlaying) { isLoopFading = false; return; }
+        audio.currentTime = 0;
+        window.fadeAudio(audio, 1, FADE_IN_SECS * 1000).then(() => {
           isLoopFading = false;
-        }
+        });
       });
     }
   });
