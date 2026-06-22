@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Gyanendra & Akshita | Wedding Invitation</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,600&family=Jost:wght@300;400;500;600&family=Pinyon+Script&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body class="locked">
+
+  <!-- ========== FULLSCREEN ENVELOPE & HERO ========== -->
+  <div id="envelope-wrapper">
+    <!-- Back of the envelope (inside) -->
+    <div class="env-back"></div>
+    
+    <!-- The actual Invitation Card / Hero Section that sits inside -->
+    <div class="env-card-container" id="inviteCard">
+      <div class="env-card hero-bg-card">
+        <div class="hero-bg-img"></div>
+        <div class="hero-overlay"></div>
+
+        <div class="hero-content">
+          <p class="hero-invite-text">Together with their families</p>
+          <div class="hero-divider">
+            <span class="divider-line"></span>
+            <svg class="divider-icon" viewBox="0 0 40 20" xmlns="http://www.w3.org/2000/svg"><path d="M20 2 C14 2, 4 8, 4 14 C4 18, 8 19, 12 17 C16 15, 18 10, 20 10 C22 10, 24 15, 28 17 C32 19, 36 18, 36 14 C36 8, 26 2, 20 2Z" fill="#b38728"/><path d="M20 2 C20 2, 20 6, 20 10" stroke="#b38728" stroke-width="1" fill="none"/></svg>
+            <span class="divider-line"></span>
+          </div>
+          <h1 class="hero-names">
+            <span class="name-groom">Gyanendra</span>
+            <span class="hero-ampersand">&amp;</span>
+            <span class="name-bride">Akshita</span>
+          </h1>
+          <p class="hero-surname">Kumar &nbsp;·&nbsp; Prasad</p>
+          <p class="hero-date">20th – 21st November 2026 &nbsp;|&nbsp; Strand Road, Patna</p>
+          <a href="#events" class="hero-cta" style="margin-bottom: 20px;">
+            <span>View Celebrations</span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M12 5v14M5 12l7 7 7-7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </a>
+        </div>
+
+        <div class="scroll-down-hint">
+          <p>SCROLL TO REVEAL</p>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M6 9l6 6 6-6"/></svg>
+        </div>
+      </div>
+    </div>
+
+    <!-- Envelope Flaps (Front) -->
+    <div class="env-front" id="envFront">
+      <!-- We use individual divs for flaps to create realistic overlap and shadows -->
+      <div class="flap flap-left"></div>
+      <div class="flap flap-right"></div>
+      <div class="flap flap-bottom"></div>
+      <div class="flap flap-top" id="flapTop"></div>
+
+      <!-- Wax Seal Interactive Area -->
+      <div class="seal-container" id="sealContainer">
+        <p class="seal-text-top">Tap to Reveal</p>
+        <div class="wax-seal" id="waxSealBtn"></div>
+        <p class="seal-text-bottom">To new beginnings!</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- The rest of the site is initially hidden under the envelope -->
+  <main id="main-content" style="opacity: 0; pointer-events: none; transition: opacity 1s;">
+    
+    <!-- ========== PETAL CANVAS ========== -->
+    <canvas id="petalCanvas"></canvas>
+
+    <!-- ========== NAV ========== -->
+    <nav id="navbar">
+      <div class="nav-monogram">
+        <svg class="nav-ga" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg">
+          <path d="M 35 15 C 15 15, 5 35, 5 50 C 5 70, 20 75, 30 75 C 40 75, 45 65, 45 55 L 35 55" fill="none" stroke="#b38728" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 55 75 L 70 15 L 85 75" fill="none" stroke="#b38728" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 60 55 L 80 55" fill="none" stroke="#b38728" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <ul class="nav-links">
+        <li><a href="#events">Events</a></li>
+        <li><a href="#story">Our Story</a></li>
+        <li><a href="#countdown">Countdown</a></li>
+        <li><a href="#venue">Venue</a></li>
+      </ul>
+      <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation">
+        <span></span><span></span><span></span>
+      </button>
+    </nav>
+
+    <div style="height: 100vh;"></div> <!-- Spacer so the hero card takes up the first screen -->
+
+    <!-- ========== INTRO QUOTE ========== -->
+    <section id="quote-section" class="reveal-section">
+      <div class="floral-corner top-left"></div>
+      <div class="floral-corner bottom-right"></div>
+      <div class="quote-container">
+        <div class="quote-icon">❝</div>
+        <blockquote class="quote-text">
+          Two souls, one destiny — <br/>blessed by love, bound by tradition.
+        </blockquote>
+        <div class="quote-ornament">
+          <svg viewBox="0 0 120 20" xmlns="http://www.w3.org/2000/svg"><path d="M0 10 Q30 2 60 10 Q90 18 120 10" stroke="#b38728" stroke-width="1.5" fill="none"/><circle cx="60" cy="10" r="3" fill="#b38728"/></svg>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== COUPLE & STORY ========== -->
+    <section id="story" class="reveal-section">
+      <div class="section-header">
+        <p class="section-eyebrow">A Journey of Love</p>
+        <h2 class="section-title">The Couple</h2>
+        <div class="title-ornament"></div>
+      </div>
+      
+      <div class="story-container">
+        <div class="story-image-wrap reveal-card">
+          <div class="story-frame"></div>
+          <img src="wedding_couple.png" alt="Couple Illustration" class="story-img" />
+        </div>
+        <div class="story-content reveal-card">
+          <h3 class="story-heading">A Match Made in Heaven</h3>
+          <p class="story-text">
+            Our journey together has been nothing short of magical. From our first meeting to this beautiful moment where we decide to walk hand-in-hand for the rest of our lives, every step has been filled with love, laughter, and endless support. 
+          </p>
+          <p class="story-text">
+            We are thrilled to celebrate our union in the presence of our beloved family and friends. Your blessings and presence mean the world to us.
+          </p>
+          <div class="story-signatures">
+            <span class="sig">Gyanendra</span> <span class="sig-amp">&amp;</span> <span class="sig">Akshita</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== EVENTS TIMELINE SLIDER ========== -->
+    <section id="events" class="reveal-section">
+      <div class="section-header">
+        <p class="section-eyebrow">Mark Your Calendar</p>
+        <h2 class="section-title">The Celebrations</h2>
+        <div class="title-ornament"></div>
+      </div>
+
+      <div class="timeline-container">
+        <div class="timeline-slider" id="timelineSlider">
+          
+          <!-- Engagement -->
+          <div class="timeline-card reveal-card" data-event="engagement">
+            <div class="card-border"></div>
+            <div class="event-date-badge">
+              <span class="date-day">20</span>
+              <span class="date-month">Nov</span>
+            </div>
+            <div class="event-icon-wrap">
+              <div class="event-icon">
+                <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="28" fill="none" stroke="#b38728" stroke-width="1"/><path d="M30 18 C24 18 20 22 20 27 C20 34 30 42 30 42 C30 42 40 34 40 27 C40 22 36 18 30 18Z" fill="rgba(179,135,40,0.1)" stroke="#b38728" stroke-width="1.5"/><path d="M26 25 L30 21 L34 25" fill="none" stroke="#b38728" stroke-width="1" stroke-linejoin="round"/></svg>
+              </div>
+            </div>
+            <h3 class="event-name">Engagement</h3>
+            <p class="event-time">11:00 AM onwards</p>
+            <div class="event-divider"></div>
+            <p class="event-location">Strand Road, Patna</p>
+            <p class="event-dress">Dress Code: Traditional &amp; Ethnic</p>
+          </div>
+
+          <!-- Haldi -->
+          <div class="timeline-card reveal-card" data-event="haldi">
+            <div class="card-border"></div>
+            <div class="event-date-badge">
+              <span class="date-day">21</span>
+              <span class="date-month">Nov</span>
+            </div>
+            <div class="event-icon-wrap">
+              <div class="event-icon">
+                <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="28" fill="none" stroke="#b38728" stroke-width="1"/><path d="M20 35 Q25 20 30 25 Q35 30 40 20 Q42 35 30 42 Q18 35 20 35Z" fill="rgba(179,135,40,0.1)" stroke="#b38728" stroke-width="1.5"/><circle cx="30" cy="28" r="5" fill="rgba(255,200,50,0.3)" stroke="#b38728" stroke-width="1"/></svg>
+              </div>
+            </div>
+            <h3 class="event-name">Haldi Ceremony</h3>
+            <p class="event-time">9:00 AM – 12:00 PM</p>
+            <div class="event-divider"></div>
+            <p class="event-location">Strand Road, Patna</p>
+            <p class="event-dress">Dress Code: Yellow &amp; White</p>
+          </div>
+
+          <!-- Wedding -->
+          <div class="timeline-card reveal-card featured-card" data-event="wedding">
+            <div class="card-border"></div>
+            <div class="event-date-badge">
+              <span class="date-day">21</span>
+              <span class="date-month">Nov</span>
+            </div>
+            <div class="event-icon-wrap">
+              <div class="event-icon">
+                <svg viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"><circle cx="30" cy="30" r="28" fill="none" stroke="#b38728" stroke-width="1"/><path d="M22 38 L22 26 Q22 20 30 20 Q38 20 38 26 L38 38" stroke="#b38728" stroke-width="1.5" fill="none"/><path d="M18 38 L42 38" stroke="#b38728" stroke-width="1.5" stroke-linecap="round"/><path d="M27 20 L27 16 L33 16 L33 20" stroke="#b38728" stroke-width="1" fill="none"/><line x1="30" y1="16" x2="30" y2="12" stroke="#b38728" stroke-width="1"/><circle cx="30" cy="12" r="2" fill="#b38728"/></svg>
+              </div>
+            </div>
+            <h3 class="event-name">Wedding</h3>
+            <p class="event-time">6:00 PM – 11:00 PM</p>
+            <div class="event-divider"></div>
+            <p class="event-location">Strand Road, Patna</p>
+            <p class="event-dress">Dress Code: Formal &amp; Festive</p>
+          </div>
+
+        </div>
+        
+        <div class="slider-controls">
+          <button class="slider-btn prev" id="sliderPrev" aria-label="Previous Event">←</button>
+          <button class="slider-btn next" id="sliderNext" aria-label="Next Event">→</button>
+        </div>
+        <p class="swipe-hint">Swipe to see more events</p>
+      </div>
+    </section>
+
+    <!-- ========== COUNTDOWN ========== -->
+    <section id="countdown" class="reveal-section">
+      <div class="section-header">
+        <p class="section-eyebrow">The Big Day</p>
+        <h2 class="section-title">Counting Down</h2>
+        <div class="title-ornament"></div>
+      </div>
+      <div class="countdown-wrap">
+        <div class="countdown-unit" id="cd-days">
+          <div class="countdown-ring">
+            <svg class="ring-svg" viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="52" /><circle class="ring-fill" id="ring-days" cx="60" cy="60" r="52" /></svg>
+            <div class="countdown-number" id="days">00</div>
+          </div>
+          <div class="countdown-label">Days</div>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-unit" id="cd-hours">
+          <div class="countdown-ring">
+            <svg class="ring-svg" viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="52" /><circle class="ring-fill" id="ring-hours" cx="60" cy="60" r="52" /></svg>
+            <div class="countdown-number" id="hours">00</div>
+          </div>
+          <div class="countdown-label">Hours</div>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-unit" id="cd-minutes">
+          <div class="countdown-ring">
+            <svg class="ring-svg" viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="52" /><circle class="ring-fill" id="ring-minutes" cx="60" cy="60" r="52" /></svg>
+            <div class="countdown-number" id="minutes">00</div>
+          </div>
+          <div class="countdown-label">Minutes</div>
+        </div>
+        <div class="countdown-separator">:</div>
+        <div class="countdown-unit" id="cd-seconds">
+          <div class="countdown-ring">
+            <svg class="ring-svg" viewBox="0 0 120 120"><circle class="ring-bg" cx="60" cy="60" r="52" /><circle class="ring-fill" id="ring-seconds" cx="60" cy="60" r="52" /></svg>
+            <div class="countdown-number" id="seconds">00</div>
+          </div>
+          <div class="countdown-label">Seconds</div>
+        </div>
+      </div>
+      <p class="countdown-subtext">Until the Wedding Ceremony — 21st Nov 2026</p>
+    </section>
+
+    <!-- ========== VENUE ========== -->
+    <section id="venue" class="reveal-section">
+      <div class="section-header">
+        <p class="section-eyebrow">Find Us Here</p>
+        <h2 class="section-title">The Venue</h2>
+        <div class="title-ornament"></div>
+      </div>
+      <div class="venue-container">
+        <div class="venue-info-card reveal-card">
+          <div class="venue-icon">
+            <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z" stroke="#b38728" stroke-width="1.5" fill="rgba(179,135,40,0.1)"/><circle cx="12" cy="9" r="2.5" stroke="#b38728" stroke-width="1.5"/></svg>
+          </div>
+          <h3 class="venue-name">Strand Road</h3>
+          <p class="venue-address">Strand Road, Patna<br/>Bihar, India</p>
+          <div class="venue-meta">
+            <div class="venue-meta-item">
+              <span class="venue-meta-label">All Events</span>
+              <span class="venue-meta-value">Same Venue</span>
+            </div>
+            <div class="venue-meta-item">
+              <span class="venue-meta-label">City</span>
+              <span class="venue-meta-value">Patna, Bihar</span>
+            </div>
+          </div>
+          <a href="https://maps.google.com/?q=Strand+Road+Patna+Bihar" target="_blank" rel="noopener" class="venue-map-btn">
+            <svg viewBox="0 0 24 24" fill="none"><path d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-1.447-.894L15 9m0 8V9m0 0L9 7" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Open in Maps
+          </a>
+        </div>
+        <div class="venue-map-embed reveal-card">
+          <iframe
+            title="Strand Road Patna Map"
+            src="https://maps.google.com/maps?q=Strand+Road,+Patna,+Bihar,+India&output=embed&z=15"
+            width="100%"
+            height="100%"
+            style="border:0;"
+            allowfullscreen=""
+            loading="lazy"
+            referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+          <div class="map-overlay-pin">
+            <div class="map-pin-dot"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========== FOOTER ========== -->
+    <footer id="footer">
+      <div class="footer-floral"></div>
+      <h2 class="section-title blessings-title">We Request Your Blessings</h2>
+      <div class="families-grid">
+        <div class="family-card">
+          <div class="family-label">Groom's Family</div>
+          <div class="family-name">Kumar Parivar</div>
+        </div>
+        <div class="family-divider">
+          <svg viewBox="0 0 30 60" xmlns="http://www.w3.org/2000/svg"><path d="M15 5 Q25 20 15 30 Q5 40 15 55" stroke="#b38728" stroke-width="1.5" fill="none"/><circle cx="15" cy="5" r="3" fill="#b38728"/><circle cx="15" cy="55" r="3" fill="#b38728"/></svg>
+        </div>
+        <div class="family-card">
+          <div class="family-label">Bride's Family</div>
+          <div class="family-name">Prasad Parivar</div>
+        </div>
+      </div>
+      
+      <div class="footer-monogram">
+        <svg class="nav-ga" viewBox="0 0 100 60" xmlns="http://www.w3.org/2000/svg" style="width: 80px; height: auto;">
+          <path d="M 35 15 C 15 15, 5 35, 5 50 C 5 70, 20 75, 30 75 C 40 75, 45 65, 45 55 L 35 55" fill="none" stroke="#b38728" stroke-width="4" stroke-linecap="round"/>
+          <path d="M 55 75 L 70 15 L 85 75" fill="none" stroke="#b38728" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          <path d="M 60 55 L 80 55" fill="none" stroke="#b38728" stroke-width="4" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <p class="footer-tagline">20th – 21st Nov 2026 &nbsp;·&nbsp; Patna, Bihar</p>
+      <div class="footer-divider-line"></div>
+      <p class="footer-copy">Made with ❤️ for a celebration of love</p>
+    </footer>
+  </main>
+
+  <!-- ========== FLASH OVERLAY ========== -->
+  <div id="flashOverlay" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: white; z-index: 100000; opacity: 0; pointer-events: none; transition: opacity 0.2s ease-in-out;"></div>
+
+  <script src="script.js"></script>
+</body>
+</html>
