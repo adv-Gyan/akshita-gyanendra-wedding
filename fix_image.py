@@ -33,7 +33,7 @@ def create_square_preview(input_path, output_path, size=1024):
     bg.paste(fg, (offset_x, offset_y))
     
     # Save the result with high quality
-    bg.save(output_path, "JPEG", quality=95)
+    bg.save(output_path, "JPEG", quality=75)
 
 if __name__ == "__main__":
     create_square_preview("link_preview.jpg", "link_preview_square.jpg")
