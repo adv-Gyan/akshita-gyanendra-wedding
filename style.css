@@ -831,11 +831,14 @@ section { padding: 100px 20px; position: relative; }
 }
 
 @media (max-width: 480px) {
+  .hero-invite-text { font-size: 0.7rem; letter-spacing: 3px; color: var(--primary-color); margin-bottom: 10px; margin-top: 10px; }
   .hero-names { font-size: 3rem; margin-bottom: 15px; }
   .name-surname { font-size: 0.75rem; margin-top: -5px; letter-spacing: 4px; margin-bottom: 5px; }
   .hero-ampersand { font-size: 2rem; margin: 5px 0; }
   .hero-surname { font-size: 0.9rem; letter-spacing: 4px; margin-bottom: 20px; }
-  .hero-date { font-size: 0.85rem; margin-bottom: 30px; }
+  .hero-date { font-size: 0.85rem; margin-bottom: 30px; flex-direction: column; display: flex; align-items: center; gap: 2px; }
+  .hero-date-separator { display: none; }
+  .hero-address { font-size: 0.8rem; }
   .hero-corner { width: 60px; height: 60px; }
   .hero-content { padding: 15px; }
   .hero-cta { padding: 12px 24px; font-size: 0.8rem; }
