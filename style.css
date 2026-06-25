@@ -753,9 +753,10 @@ section { padding: 100px 20px; position: relative; }
 #footer { background: var(--primary-dark); color: #fff; text-align: center; padding: 80px 20px 40px; position: relative; }
 .footer-floral { position: absolute; top: 0; left: 50%; transform: translate(-50%, -50%); width: 100px; height: 50px; background: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 50"><path d="M50 0 C70 20, 90 20, 100 50 C80 40, 60 40, 50 50 C40 40, 20 40, 0 50 C10 20, 30 20, 50 0 Z" fill="%23fdfbf7"/></svg>') no-repeat center; }
 .blessings-title { color: var(--gold-light); margin-bottom: 50px; }
-.families-grid { display: flex; justify-content: center; align-items: center; gap: 50px; margin-bottom: 60px; }
-.family-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.6); margin-bottom: 5px; }
-.family-name { font-family: var(--font-display); font-size: 2rem; color: #fff; }
+.families-grid { display: flex; justify-content: center; align-items: flex-start; gap: 40px; margin-bottom: 60px; flex-wrap: wrap; }
+.family-card { flex: 1; min-width: 160px; max-width: 280px; text-align: center; }
+.family-label { font-size: 0.9rem; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.6); margin-bottom: 8px; }
+.family-name { font-family: var(--font-display); font-size: 1.3rem; color: #fff; line-height: 1.7; }
 .footer-monogram { margin-bottom: 20px; }
 .footer-tagline { font-family: var(--font-body); letter-spacing: 2px; color: rgba(255,255,255,0.8); margin-bottom: 30px; }
 .footer-divider-line { width: 80px; height: 1px; background: var(--gold); margin: 0 auto 30px; }
@@ -804,8 +805,9 @@ section { padding: 100px 20px; position: relative; }
   .countdown-label { font-size: 0.75rem; letter-spacing: 2px; }
   .countdown-subtext { font-size: 1.6rem; padding: 0 20px; }
   
-  .families-grid { flex-direction: column; gap: 20px; }
-  .family-divider { transform: rotate(90deg); margin: 10px 0; }
+  .families-grid { flex-direction: row; gap: 20px; align-items: flex-start; }
+  .family-card { min-width: 120px; }
+  .family-divider { margin: 0 5px; }
   
   .swipe-hint { display: block; }
   .slider-controls { display: none; }
