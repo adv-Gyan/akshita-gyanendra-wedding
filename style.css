@@ -433,9 +433,11 @@ body.locked {
   line-height: 1;
 }
 .mono-A {
-  font-family: 'Cinzel Decorative', serif;
-  font-weight: 700;
-  font-size: 1.05em;
+  font-family: 'Pinyon Script', cursive;
+  font-weight: 400;
+  font-size: 1.2em;
+  display: inline-block;
+  line-height: 1;
 }
 .mono-amp {
   font-size: 0.65em;
