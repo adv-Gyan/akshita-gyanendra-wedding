@@ -55,6 +55,7 @@ body {
 body.locked {
   overflow: hidden;
   height: 100vh;
+  height: 100dvh;
 }
 
 /* =========================================================================
@@ -66,6 +67,7 @@ body.locked {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   z-index: 10000;
   perspective: 1500px;
   overflow: hidden;
@@ -95,6 +97,7 @@ body.locked {
   left: 0;
   width: 100vw;
   height: 100vh;
+  height: 100dvh;
   z-index: 2;
   opacity: 0; /* Hidden before flash! */
   transition: opacity 0.1s;
@@ -122,6 +125,7 @@ body.locked {
   background-repeat: no-repeat;
   z-index: 0;
   animation: kenBurns 30s ease-out infinite alternate;
+  will-change: transform;
 }
 
 @keyframes kenBurns {
@@ -801,7 +805,7 @@ section { padding: 100px 20px; position: relative; }
 }
 
 @media (max-width: 768px) {
-  .nav-links { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; transition: var(--transition); border-left: 1px solid var(--glass-border); box-shadow: -5px 0 20px rgba(0,0,0,0.1); }
+  .nav-links { position: fixed; top: 0; right: -100%; width: 250px; height: 100vh; height: 100dvh; background: var(--glass-bg); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); flex-direction: column; align-items: center; justify-content: center; transition: var(--transition); border-left: 1px solid var(--glass-border); box-shadow: -5px 0 20px rgba(0,0,0,0.1); }
   .nav-links.active { right: 0; }
   .nav-toggle { display: flex; }
   .nav-toggle.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
