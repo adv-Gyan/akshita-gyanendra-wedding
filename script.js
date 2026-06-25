@@ -104,38 +104,43 @@ const confettiBurst = (function () {
   // Start silent
   audio.volume = 0;
 
-  // Fade helper — resolves immediately if already at target (prevents divide-by-zero)
+  // Time-based fade helper using requestAnimationFrame for smooth, reliable fading
   window.fadeAudio = function(audioElement, targetVolume, duration) {
     return new Promise(resolve => {
-      clearInterval(audioElement.fadeInterval);
+      if (audioElement.fadeRaf) {
+        cancelAnimationFrame(audioElement.fadeRaf);
+      }
 
-      const diff = Math.abs(targetVolume - audioElement.volume);
-      if (diff < 0.01) {
+      const startVolume = audioElement.volume;
+      const diff = targetVolume - startVolume;
+      
+      if (Math.abs(diff) < 0.01 || duration <= 0) {
         audioElement.volume = targetVolume;
         resolve();
         return;
       }
 
-      const step          = 0.04;
-      const intervalDelay = duration / (diff / step);
+      const startTime = performance.now();
 
-      audioElement.fadeInterval = setInterval(() => {
-        let v = audioElement.volume;
-        v = (v < targetVolume)
-          ? Math.min(targetVolume, v + step)
-          : Math.max(targetVolume, v - step);
-        audioElement.volume = v;
-
-        if (Math.abs(v - targetVolume) < 0.01) {
+      function tick(currentTime) {
+        const elapsed = currentTime - startTime;
+        let progress = elapsed / duration;
+        
+        if (progress >= 1) {
           audioElement.volume = targetVolume;
-          clearInterval(audioElement.fadeInterval);
+          audioElement.fadeRaf = null;
           resolve();
+        } else {
+          audioElement.volume = startVolume + (diff * progress);
+          audioElement.fadeRaf = requestAnimationFrame(tick);
         }
-      }, intervalDelay);
+      }
+      
+      audioElement.fadeRaf = requestAnimationFrame(tick);
     });
   };
 
-  // Explicit state flag — audio.paused is unreliable during fade on mobile Safari
+  // Explicit state flag
   let isPlaying    = false;
   let isLoopFading = false;
 
@@ -154,7 +159,7 @@ const confettiBurst = (function () {
     if (!isPlaying || forcePlay) {
       // --- PLAY ---
       isPlaying = true;
-      setPlayUI();
+      setPlayUI(); // Update UI instantly
       audio.play()
         .then(() => window.fadeAudio(audio, 1, 1000))
         .catch(err => {
@@ -165,17 +170,21 @@ const confettiBurst = (function () {
     } else {
       // --- PAUSE ---
       isPlaying = false;
-      isLoopFading = false;          // cancel any loop-fade in progress
-      clearInterval(audio.fadeInterval);
-      window.fadeAudio(audio, 0, 500).then(() => {
-        audio.pause();
-        setPauseUI();
+      setPauseUI(); // Update UI instantly so user knows it responded
+      isLoopFading = false;
+      window.fadeAudio(audio, 0, 400).then(() => {
+        if (!isPlaying) { // Only pause if they haven't tapped play again
+          audio.pause();
+        }
       });
     }
   };
 
-  // Single tap listener — touchend for instant response on mobile
-  btn.addEventListener('click', () => window.toggleMusicState());
+  // Single tap listener
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    window.toggleMusicState();
+  });
 
   // Smooth loop: fade out 3 s before end, seek to 0, fade back in
   const FADE_OUT_SECS = 3;
@@ -496,7 +505,7 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =========================================================================
      COUNTDOWN TIMER
   ========================================================================= */
-  const weddingDate = new Date('November 21, 2026 18:00:00').getTime();
+  const weddingDate = new Date('November 21, 2026 20:00:00').getTime();
 
   function updateCountdown() {
     const now = new Date().getTime();
