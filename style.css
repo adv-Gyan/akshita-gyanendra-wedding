@@ -251,7 +251,7 @@ body.locked {
   font-family: var(--font-script);
   font-size: 4rem;
   color: var(--gold);
-  line-height: 0.6;
+  line-height: 1;
   margin: 10px 0;
 }
 
@@ -277,6 +277,7 @@ body.locked {
   font-size: 1rem;
   color: var(--text-main);
   margin-top: -15px; /* Pulls surname closer to the first name */
+  margin-bottom: 5px;
 }
 
 .hero-date {
@@ -807,8 +808,9 @@ section { padding: 100px 20px; position: relative; }
   .nav-toggle.active span:nth-child(2) { opacity: 0; }
   .nav-toggle.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
-  .hero-names { font-size: 3rem; }
-  .hero-ampersand { font-size: 2.5rem; }
+  .hero-names { font-size: 4rem; }
+  .name-surname { font-size: 0.9rem; margin-top: -10px; }
+  .hero-ampersand { font-size: 2.5rem; margin: 10px 0; }
   .hero-surname { font-size: 1rem; letter-spacing: 4px; }
   .section-title { font-size: 2.5rem; }
   
@@ -829,8 +831,9 @@ section { padding: 100px 20px; position: relative; }
 }
 
 @media (max-width: 480px) {
-  .hero-names { font-size: 3rem; margin-bottom: 5px; }
-  .hero-ampersand { font-size: 2rem; margin: 0; }
+  .hero-names { font-size: 3rem; margin-bottom: 15px; }
+  .name-surname { font-size: 0.75rem; margin-top: -5px; letter-spacing: 4px; margin-bottom: 5px; }
+  .hero-ampersand { font-size: 2rem; margin: 5px 0; }
   .hero-surname { font-size: 0.9rem; letter-spacing: 4px; margin-bottom: 20px; }
   .hero-date { font-size: 0.85rem; margin-bottom: 30px; }
   .hero-corner { width: 60px; height: 60px; }
