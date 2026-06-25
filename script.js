@@ -387,7 +387,8 @@ document.addEventListener('DOMContentLoaded', () => {
             flashOverlay.style.opacity = '0';
 
             // 🎉 Confetti burst as the flash fades to reveal the invitation
-            setTimeout(() => confettiBurst.fire(window.innerWidth / 2, window.innerHeight / 3, 220), 400);
+            const particleCount = window.innerWidth < 768 ? 60 : 220;
+            setTimeout(() => confettiBurst.fire(window.innerWidth / 2, window.innerHeight / 3, particleCount), 400);
             
           }, 300); // Wait 300ms for flash to reach full brightness
         }
