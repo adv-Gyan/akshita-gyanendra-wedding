@@ -448,13 +448,9 @@ body.locked {
   line-height: 1;
 }
 .mono-A {
-  font-family: 'Pinyon Script', cursive;
-  font-weight: 400;
-  font-size: 1.2em;
-  display: inline-block;
-  line-height: 1;
-  transform: skewX(-12deg);
-  transform-origin: bottom center;
+  font-family: 'Tangerine', cursive;
+  font-weight: 700;
+  font-size: 1.4em; /* Tangerine runs a bit small, bump it up */
 }
 .mono-amp {
   font-size: 0.65em;
