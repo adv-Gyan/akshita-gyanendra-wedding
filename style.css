@@ -453,6 +453,8 @@ body.locked {
   font-size: 1.2em;
   display: inline-block;
   line-height: 1;
+  transform: skewX(-12deg);
+  transform-origin: bottom center;
 }
 .mono-amp {
   font-size: 0.65em;
