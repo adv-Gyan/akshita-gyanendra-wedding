@@ -432,6 +432,11 @@ body.locked {
   display: inline-block;
   line-height: 1;
 }
+.mono-A {
+  font-family: 'Cinzel Decorative', serif;
+  font-weight: 700;
+  font-size: 1.05em;
+}
 .mono-amp {
   font-size: 0.65em;
   opacity: 0.8;
