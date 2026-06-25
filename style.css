@@ -421,6 +421,12 @@ body.locked {
 #navbar { position: fixed; top: 0; width: 100%; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 900; transition: var(--transition); background: transparent; border-bottom: 1px solid transparent; }
 #navbar.scrolled { background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); box-shadow: var(--shadow-sm); padding: 10px 40px; }
 .nav-monogram { display: flex; align-items: center; justify-content: center; }
+.text-monogram {
+  font-family: 'Great Vibes', cursive;
+  font-size: 2.2rem;
+  color: var(--gold);
+  line-height: 1;
+}
 .nav-ga { width: 60px; height: 36px; }
 .nav-links { display: flex; list-style: none; gap: 30px; }
 .nav-links a { text-decoration: none; color: var(--text-main); font-family: var(--font-display); font-size: 1.1rem; text-transform: uppercase; letter-spacing: 2px; position: relative; font-weight: 500; transition: color 0.3s; }
