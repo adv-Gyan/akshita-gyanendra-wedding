@@ -264,6 +264,21 @@ body.locked {
   margin-bottom: 30px;
 }
 
+.name-group {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.name-surname {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 6px;
+  font-size: 1rem;
+  color: var(--text-main);
+  margin-top: -15px; /* Pulls surname closer to the first name */
+}
+
 .hero-date {
   font-size: 1.1rem;
   color: var(--text-light);
