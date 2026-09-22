@@ -327,13 +327,18 @@ document.addEventListener('DOMContentLoaded', () => {
      FULLSCREEN ENVELOPE LOGIC
   ========================================================================= */
 const waxSealBtn = document.getElementById('waxSealBtn');
+  const openInvitationBtn = document.getElementById('openInvitationBtn');
   const sealContainer = document.getElementById('sealContainer');
   const envelopeWrapper = document.getElementById('envelope-wrapper');
   const mainContent = document.getElementById('main-content');
 
-  if (waxSealBtn && envelopeWrapper) {
-    waxSealBtn.addEventListener('click', () => {
-      // A quiet, premium reveal: the seal disappears and the invitation comes forward.
+  if (envelopeWrapper && (waxSealBtn || openInvitationBtn)) {
+    let opened = false;
+
+    const openInvitation = () => {
+      if (opened) return;
+      opened = true;
+
       if (window.toggleMusicState && document.getElementById('bgMusic').paused) {
         window.toggleMusicState(true);
       }
@@ -351,6 +356,15 @@ const waxSealBtn = document.getElementById('waxSealBtn');
         window.scrollTo(0, 0);
         initReveals();
       }, 650);
+    };
+
+    waxSealBtn?.addEventListener('click', openInvitation);
+    openInvitationBtn?.addEventListener('click', openInvitation);
+    waxSealBtn?.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') {
+        e.preventDefault();
+        openInvitation();
+      }
     });
   } else {
     document.body.classList.remove('locked');
@@ -361,7 +375,7 @@ const waxSealBtn = document.getElementById('waxSealBtn');
     initReveals();
   }
 
-    /* =========================================================================
+  /* =========================================================================
      MOBILE NAVIGATION
   ========================================================================= */
   const navToggle = document.getElementById('navToggle');
