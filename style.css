@@ -1006,7 +1006,7 @@ section { padding: 100px 20px; position: relative; }
   background-image: url('assets/envelope-luxury.svg');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: cover;
+  background-size: 100% 100%;
   box-shadow: none;
 }
 
@@ -1055,8 +1055,8 @@ section { padding: 100px 20px; position: relative; }
 .wax-seal {
   position: absolute;
   left: 50%;
-  top: 51.5%;
-  width: clamp(142px, 22vw, 190px);
+  top: 49.5%;
+  width: clamp(125px, 32vw, 260px);
   height: auto;
   aspect-ratio: 1;
   margin: 0;
@@ -1126,7 +1126,7 @@ section { padding: 100px 20px; position: relative; }
   gap: 0;
   color: #f2cf7b;
   font-family: 'Great Vibes', 'Tangerine', cursive;
-  font-size: clamp(3.4rem, 7vw, 5.1rem);
+  font-size: clamp(3.1rem, 16vw, 5.5rem);
   font-weight: 400;
   line-height: .78;
   letter-spacing: -.10em;
@@ -1148,11 +1148,11 @@ section { padding: 100px 20px; position: relative; }
 .open-invitation-btn {
   position: absolute;
   left: 50%;
-  top: 73.5%;
+  top: 76%;
   z-index: 25;
   margin: 0;
   transform: translateX(-50%);
-  width: min(315px, 70vw);
+  width: clamp(180px, 44vw, 360px);
   min-width: 0;
   padding: 13px 24px 10px;
   border: 1px solid rgba(236, 193, 105, .96);
@@ -1259,17 +1259,17 @@ body.locked #musicToggle {
   }
 
   .wax-seal {
-    top: 51%;
-    width: clamp(136px, 38vw, 170px);
+    top: 49.5%;
+    width: clamp(125px, 32vw, 260px);
   }
 
   .seal-monogram {
-    font-size: clamp(3.1rem, 12vw, 4.2rem);
+    font-size: clamp(3rem, 16vw, 5rem);
   }
 
   .open-invitation-btn {
     top: 73.5%;
-    width: min(290px, 68vw);
+    width: clamp(180px, 44vw, 360px);
     padding: 12px 20px 9px;
     letter-spacing: 3px;
   }
@@ -1281,12 +1281,12 @@ body.locked #musicToggle {
 
 @media (max-height: 720px) {
   .wax-seal {
-    top: 50%;
-    width: clamp(132px, 22vh, 168px);
+    top: 49.5%;
+    width: clamp(125px, 32vw, 260px);
   }
 
   .open-invitation-btn {
-    top: 73%;
+    top: 76%;
   }
 }
 
