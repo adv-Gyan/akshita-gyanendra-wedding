@@ -136,7 +136,13 @@ body.locked {
 .hero-overlay {
   position: absolute;
   inset: 0;
-  background: linear-gradient(to bottom, rgba(253,251,247,0.3) 0%, rgba(253,251,247,0.9) 95%, var(--bg-color) 100%);
+  background: linear-gradient(
+    to bottom,
+    rgba(253,251,247,.10) 0%,
+    rgba(253,251,247,.28) 58%,
+    rgba(253,251,247,.66) 94%,
+    var(--bg-color) 100%
+  );
   z-index: 1;
 }
 
@@ -1316,15 +1322,26 @@ body.locked #musicToggle {
   transition: opacity .35s ease;
 }
 
-#envelope-wrapper.opened .env-card-container {
-  opacity: 1;
-  transform: translateY(0) scale(1);
-}
+
 
 #envelope-wrapper.opened .env-front {
   opacity: 0;
   pointer-events: none;
-  transition: opacity .65s ease .55s;
+  visibility: hidden;
+  transition: opacity .55s ease .45s, visibility 0s linear 1s;
+}
+
+#envelope-wrapper.opened .env-back {
+  opacity: 0;
+  transition: opacity .35s ease 1s;
+}
+
+#envelope-wrapper.opened .env-card-container {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+  transition:
+    opacity .8s ease,
+    transform 1.25s cubic-bezier(.22, 1, .36, 1);
 }
 
 #envelope-wrapper.opened {
@@ -1335,6 +1352,20 @@ body.locked #musicToggle {
 @media (max-width: 600px) {
   #envelope-wrapper {
     background: #2c0104;
+  }
+
+  .hero-bg-img {
+    background-position: center center;
+  }
+
+  .hero-overlay {
+    background: linear-gradient(
+      to bottom,
+      rgba(253,251,247,.06) 0%,
+      rgba(253,251,247,.22) 55%,
+      rgba(253,251,247,.62) 92%,
+      var(--bg-color) 100%
+    );
   }
 
   .env-back {
