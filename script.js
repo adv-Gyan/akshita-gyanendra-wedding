@@ -217,8 +217,7 @@ const confettiBurst = (function () {
     ['.hero-bg-img',        0.30],   // hero bg drifts slowest
     ['.hero-overlay',       0.18],   // overlay drifts slightly faster
     ['.floral-corner.top-left',  0.10],
-    ['.floral-corner.bottom-right', -0.08],  // opposite direction for depth
-    ['#quote-section .quote-icon', 0.08],
+    ['.floral-corner.bottom-right', -0.08],  // opposite direction for depth    ['#quote-section .quote-icon', 0.08],
   ];
 
   const resolved = layers.map(([sel, speed]) => ({
@@ -327,76 +326,33 @@ document.addEventListener('DOMContentLoaded', () => {
   /* =========================================================================
      FULLSCREEN ENVELOPE LOGIC
   ========================================================================= */
-  const waxSealBtn = document.getElementById('waxSealBtn');
+const waxSealBtn = document.getElementById('waxSealBtn');
   const sealContainer = document.getElementById('sealContainer');
-  const flapTop = document.getElementById('flapTop');
-  const envFront = document.getElementById('envFront');
-  const envBack = document.querySelector('.env-back');
   const envelopeWrapper = document.getElementById('envelope-wrapper');
   const mainContent = document.getElementById('main-content');
-  const petalCanvas = document.getElementById('petalCanvas');
 
-      if (waxSealBtn && flapTop) {
+  if (waxSealBtn && envelopeWrapper) {
     waxSealBtn.addEventListener('click', () => {
-      // Auto-start music with a gentle fade when the envelope is opened
+      // A quiet, premium reveal: the seal disappears and the invitation comes forward.
       if (window.toggleMusicState && document.getElementById('bgMusic').paused) {
         window.toggleMusicState(true);
       }
 
-      // 1. Hide the seal container
-      sealContainer.classList.add('hide');
-      
-      // 2. Open the top flap
-      flapTop.classList.add('open');
-      
-      // 3. Wait for flap to open, then trigger flash
+      sealContainer?.classList.add('hide');
+      envelopeWrapper.classList.add('opened');
+
       setTimeout(() => {
-        const flashOverlay = document.getElementById('flashOverlay');
-        if (flashOverlay) {
-          // Trigger the bright flash
-          flashOverlay.style.opacity = '1';
-          
-          // Exactly when the screen is white, swap everything out instantly
-          setTimeout(() => {
-            // Hide envelope instantly behind the flash
-            envFront.style.transition = 'none';
-            envBack.style.transition = 'none';
-            envFront.style.opacity = '0';
-            envBack.style.opacity = '0';
-            envFront.style.display = 'none';
-            envBack.style.display = 'none';
-            
-            // Reveal the card content instantly behind the flash
-            const inviteCardContainer = document.getElementById('inviteCard');
-            if (inviteCardContainer) inviteCardContainer.style.opacity = '1';
-
-            // Make main content visible instantly
-            mainContent.style.opacity = '1';
-            mainContent.style.pointerEvents = 'auto';
-            document.body.classList.remove('locked');
-            envelopeWrapper.style.position = 'absolute';
-            
-            // Guarantee we are perfectly at the top of the page
-            window.scrollTo(0, 0);
-            
-            // Start reveals (hero petal canvas handles petals — no full-page canvas needed)
-            initReveals();
-            
-            // Fade out the flash slowly to reveal the beautifully transitioned content
-            flashOverlay.style.transition = 'opacity 1.5s ease-out';
-            flashOverlay.style.opacity = '0';
-
-            // 🎉 Confetti burst as the flash fades to reveal the invitation
-            const particleCount = window.innerWidth < 768 ? 60 : 220;
-            setTimeout(() => confettiBurst.fire(window.innerWidth / 2, window.innerHeight / 3, particleCount), 400);
-            
-          }, 300); // Wait 300ms for flash to reach full brightness
+        if (mainContent) {
+          mainContent.style.opacity = '1';
+          mainContent.style.pointerEvents = 'auto';
         }
-      }, 900); // Wait 900ms for flap to finish opening
-
+        document.body.classList.remove('locked');
+        envelopeWrapper.style.position = 'absolute';
+        window.scrollTo(0, 0);
+        initReveals();
+      }, 650);
     });
   } else {
-    // Fallback
     document.body.classList.remove('locked');
     if (mainContent) {
       mainContent.style.opacity = '1';
@@ -405,7 +361,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initReveals();
   }
 
-  /* =========================================================================
+    /* =========================================================================
      MOBILE NAVIGATION
   ========================================================================= */
   const navToggle = document.getElementById('navToggle');
@@ -437,8 +393,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
   /* =========================================================================
      VERTICAL TIMELINE SCROLL LOGIC
-  ========================================================================= */
-  const verticalTimeline = document.getElementById('verticalTimeline');
+  ========================================================================= */  const verticalTimeline = document.getElementById('verticalTimeline');
   const timelineProgress = document.getElementById('timelineProgress');
   const timelineItems = document.querySelectorAll('.timeline-item');
 
