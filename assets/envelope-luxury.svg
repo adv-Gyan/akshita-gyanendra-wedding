@@ -48,11 +48,11 @@
       <path d="M2 0 C12 -4 21 -8 29 -9" fill="none" stroke="#7a4310" stroke-width="1.2" opacity=".8"/>
     </g>
     <g id="sprig" fill="none" stroke="url(#gold)" stroke-linecap="round">
-      <path d="M0 250 C38 185 62 116 130 35 C155 7 174 -2 190 -12" stroke-width="3"/>
-      <path d="M28 205 C7 184 0 166 -1 145" stroke-width="2"/>
-      <path d="M52 160 C82 151 104 134 119 111" stroke-width="2"/>
-      <path d="M78 118 C55 102 47 85 48 68" stroke-width="2"/>
-      <path d="M104 84 C132 82 150 68 165 49" stroke-width="2"/>
+      <path d="M0 250 C48 390 78 275 138 150 C168 88 205 40 242 10" stroke-width="3"/>
+      <path d="M42 350 C12 322 0 288 2 250" stroke-width="2"/>
+      <path d="M72 285 C112 268 140 236 158 198" stroke-width="2"/>
+      <path d="M104 220 C72 194 66 160 72 130" stroke-width="2"/>
+      <path d="M140 165 C178 154 205 126 222 91" stroke-width="2"/>
     </g>
   </defs>
 
@@ -75,44 +75,44 @@
   <!-- Top left botanical arrangement -->
   <g transform="translate(0 20)">
     <use href="#sprig"/>
-    <g transform="translate(38 181) rotate(-24) scale(.9)"><use href="#flower"/></g>
-    <g transform="translate(78 119) rotate(-24) scale(.48)"><use href="#leaf"/></g>
-    <g transform="translate(51 164) rotate(18) scale(.55)"><use href="#leaf"/></g>
-    <g transform="translate(93 109) rotate(-12) scale(.5)"><use href="#leaf"/></g>
-    <g transform="translate(119 78) rotate(35) scale(.55)"><use href="#leaf"/></g>
-    <g transform="translate(61 221) rotate(-38) scale(.56)"><use href="#leaf"/></g>
-    <g transform="translate(26 251) rotate(-35) scale(.48)"><use href="#leaf"/></g>
-    <g transform="translate(105 178) rotate(18) scale(.42)"><use href="#leaf"/></g>
-    <circle cx="91" cy="189" r="4" fill="url(#gold)"/>
-    <circle cx="122" cy="209" r="3" fill="url(#gold)"/>
-    <circle cx="152" cy="148" r="4" fill="url(#gold)"/>
+    <g transform="translate(72 300) rotate(-24) scale(1.05)"><use href="#flower"/></g>
+    <g transform="translate(98 226) rotate(-24) scale(.58)"><use href="#leaf"/></g>
+    <g transform="translate(66 286) rotate(18) scale(.65)"><use href="#leaf"/></g>
+    <g transform="translate(121 202) rotate(-12) scale(.58)"><use href="#leaf"/></g>
+    <g transform="translate(160 151) rotate(35) scale(.62)"><use href="#leaf"/></g>
+    <g transform="translate(74 350) rotate(-38) scale(.64)"><use href="#leaf"/></g>
+    <g transform="translate(44 382) rotate(-35) scale(.58)"><use href="#leaf"/></g>
+    <g transform="translate(145 272) rotate(18) scale(.5)"><use href="#leaf"/></g>
+    <circle cx="125" cy="320" r="4" fill="url(#gold)"/>
+    <circle cx="164" cy="350" r="3" fill="url(#gold)"/>
+    <circle cx="190" cy="238" r="4" fill="url(#gold)"/>
   </g>
 
   <!-- Bottom right botanical arrangement -->
   <g transform="translate(809 1536) rotate(180)">
     <use href="#sprig"/>
-    <g transform="translate(38 181) rotate(-24) scale(.9)"><use href="#flower"/></g>
-    <g transform="translate(78 119) rotate(-24) scale(.48)"><use href="#leaf"/></g>
-    <g transform="translate(51 164) rotate(18) scale(.55)"><use href="#leaf"/></g>
-    <g transform="translate(93 109) rotate(-12) scale(.5)"><use href="#leaf"/></g>
-    <g transform="translate(119 78) rotate(35) scale(.55)"><use href="#leaf"/></g>
-    <g transform="translate(61 221) rotate(-38) scale(.56)"><use href="#leaf"/></g>
-    <g transform="translate(26 251) rotate(-35) scale(.48)"><use href="#leaf"/></g>
-    <g transform="translate(105 178) rotate(18) scale(.42)"><use href="#leaf"/></g>
-    <circle cx="91" cy="189" r="4" fill="url(#gold)"/>
-    <circle cx="122" cy="209" r="3" fill="url(#gold)"/>
-    <circle cx="152" cy="148" r="4" fill="url(#gold)"/>
+    <g transform="translate(72 300) rotate(-24) scale(1.05)"><use href="#flower"/></g>
+    <g transform="translate(98 226) rotate(-24) scale(.58)"><use href="#leaf"/></g>
+    <g transform="translate(66 286) rotate(18) scale(.65)"><use href="#leaf"/></g>
+    <g transform="translate(121 202) rotate(-12) scale(.58)"><use href="#leaf"/></g>
+    <g transform="translate(160 151) rotate(35) scale(.62)"><use href="#leaf"/></g>
+    <g transform="translate(74 350) rotate(-38) scale(.64)"><use href="#leaf"/></g>
+    <g transform="translate(44 382) rotate(-35) scale(.58)"><use href="#leaf"/></g>
+    <g transform="translate(145 272) rotate(18) scale(.5)"><use href="#leaf"/></g>
+    <circle cx="125" cy="320" r="4" fill="url(#gold)"/>
+    <circle cx="164" cy="350" r="3" fill="url(#gold)"/>
+    <circle cx="190" cy="238" r="4" fill="url(#gold)"/>
   </g>
 
   <!-- Envelope flap geometry -->
-  <path d="M12 0 L404.5 640 L797 0 Z" fill="#980c12" opacity=".56"/>
-  <path d="M12 0 L404.5 640 L797 0" fill="none" stroke="url(#gold)" stroke-width="2.1" opacity=".95"/>
-  <path d="M12 0 L404.5 640 L797 0" fill="none" stroke="#ffd981" stroke-width=".55" opacity=".6"/>
+  <path d="M12 0 L404.5 760 L797 0 Z" fill="#980c12" opacity=".56"/>
+  <path d="M12 0 L404.5 760 L797 0" fill="none" stroke="url(#gold)" stroke-width="2.1" opacity=".95"/>
+  <path d="M12 0 L404.5 760 L797 0" fill="none" stroke="#ffd981" stroke-width=".55" opacity=".6"/>
 
   <!-- Fold shadows -->
-  <path d="M12 0 L404.5 640 L797 0" fill="none" stroke="#300003" stroke-width="13" opacity=".18" filter="url(#smallShadow)"/>
-  <path d="M12 1536 L404.5 896 L797 1536" fill="none" stroke="#ffd47a" stroke-width="1.5" opacity=".55"/>
+  <path d="M12 0 L404.5 760 L797 0" fill="none" stroke="#300003" stroke-width="13" opacity=".18" filter="url(#smallShadow)"/>
+  <path d="M12 1536 L404.5 776 L797 1536" fill="none" stroke="#ffd47a" stroke-width="1.5" opacity=".55"/>
 
   <!-- Seal drop shadow -->
-  <ellipse cx="404.5" cy="665" rx="105" ry="27" fill="#160001" opacity=".35" filter="url(#shadow)"/>
+  <ellipse cx="404.5" cy="765" rx="105" ry="27" fill="#160001" opacity=".35" filter="url(#shadow)"/>
 </svg>
