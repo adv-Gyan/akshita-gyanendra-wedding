@@ -104,15 +104,5 @@
     <circle cx="190" cy="238" r="4" fill="url(#gold)"/>
   </g>
 
-  <!-- Envelope flap geometry -->
-  <path d="M12 0 L404.5 760 L797 0 Z" fill="#980c12" opacity=".56"/>
-  <path d="M12 0 L404.5 760 L797 0" fill="none" stroke="url(#gold)" stroke-width="2.1" opacity=".95"/>
-  <path d="M12 0 L404.5 760 L797 0" fill="none" stroke="#ffd981" stroke-width=".55" opacity=".6"/>
-
-  <!-- Fold shadows -->
-  <path d="M12 0 L404.5 760 L797 0" fill="none" stroke="#300003" stroke-width="13" opacity=".18" filter="url(#smallShadow)"/>
-  <path d="M12 1536 L404.5 776 L797 1536" fill="none" stroke="#ffd47a" stroke-width="1.5" opacity=".55"/>
-
-  <!-- Seal drop shadow -->
-  <ellipse cx="404.5" cy="765" rx="105" ry="27" fill="#160001" opacity=".35" filter="url(#shadow)"/>
+  <!-- Flap geometry is rendered by the interactive HTML/CSS flap layers. -->
 </svg>
