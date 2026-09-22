@@ -217,8 +217,7 @@ body.locked {
   100% { text-shadow: 1px 1px 2px rgba(255,255,255,0.8), 0 0 10px rgba(179,135,40,0); }
 }
 
-.hero-content > * {
-  opacity: 0; /* Hidden before flash fades */
+.hero-content > * {  opacity: 0; /* Hidden before flash fades */
   animation: slideUpHero 1.2s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
 }
 
@@ -437,8 +436,7 @@ body.locked {
 
 /* =========================================================================
    NAVIGATION
-========================================================================= */
-#navbar { position: fixed; top: 0; width: 100%; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 900; transition: var(--transition); background: transparent; border-bottom: 1px solid transparent; }
+========================================================================= */#navbar { position: fixed; top: 0; width: 100%; padding: 15px 40px; display: flex; justify-content: space-between; align-items: center; z-index: 900; transition: var(--transition); background: transparent; border-bottom: 1px solid transparent; }
 #navbar.scrolled { background: var(--glass-bg); backdrop-filter: blur(15px); -webkit-backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass-border); box-shadow: var(--shadow-sm); padding: 10px 40px; }
 .nav-monogram { display: flex; align-items: center; justify-content: center; }
 .text-monogram {
@@ -657,7 +655,6 @@ section { padding: 100px 20px; position: relative; }
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--gold-light);
 }
-
 .timeline-item.right .timeline-photo {
   right: auto;
   left: 40px;
@@ -877,8 +874,7 @@ section { padding: 100px 20px; position: relative; }
   flex-direction: column;
   align-items: center;
   gap: 20px;
-}
-.ls-monogram {
+}.ls-monogram {
   font-family: 'Great Vibes', cursive;
   font-size: 5.5rem;
   color: var(--gold);
@@ -979,4 +975,118 @@ section { padding: 100px 20px; position: relative; }
 .parallax-section > *:not(.parallax-bg) {
   position: relative;
   z-index: 1;
+}
+
+/* =========================================================================
+   WEDDING ENVELOPE REDESIGN - RED & GOLD WAX SEAL
+   Replaces the heavy flap/flash treatment with a restrained luxury reveal.
+========================================================================= */
+#envelope-wrapper {
+  background:
+    radial-gradient(circle at 50% 45%, rgba(191,149,63,.12), transparent 34%),
+    #5c0000;
+  perspective: none;
+}
+#envelope-wrapper::before {
+  content: "";
+  position: absolute;
+  inset: 22px;
+  border: 1px solid rgba(252,246,186,.42);
+  box-shadow: inset 0 0 0 8px rgba(191,149,63,.04), 0 0 0 1px rgba(191,149,63,.08);
+  pointer-events: none;
+  z-index: 1;
+}
+.env-back {
+  background:
+    linear-gradient(135deg, rgba(255,255,255,.035) 25%, transparent 25%) 0 0/18px 18px,
+    linear-gradient(315deg, rgba(255,255,255,.025) 25%, transparent 25%) 0 0/18px 18px,
+    radial-gradient(circle at 50% 50%, #8b0000 0%, #6f0000 55%, #4d0000 100%);
+  box-shadow: none;
+}
+.env-card-container {
+  opacity: 0;
+  transition: opacity .9s ease;
+  z-index: 2;
+}
+.env-front {
+  z-index: 5;
+  opacity: 1;
+  transition: opacity .75s ease, transform .75s ease;
+}
+.flap {
+  display: none !important;
+}
+.seal-container {
+  gap: 4px;
+}
+.seal-text-top, .seal-text-bottom {
+  font-family: var(--font-body);
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: .72rem;
+  color: #fcf6ba;
+  text-shadow: none;
+  margin: 12px 0;
+}
+.seal-text-top::before,
+.seal-text-bottom::after {
+  content: "";
+  display: inline-block;
+  width: 38px;
+  height: 1px;
+  vertical-align: middle;
+  background: linear-gradient(90deg, transparent, #bf953f);
+  margin: 0 12px;
+}
+.seal-text-bottom::after {
+  background: linear-gradient(90deg, #bf953f, transparent);
+}
+.wax-seal {
+  width: 190px;
+  height: 190px;
+  border: 1px solid rgba(252,246,186,.42);
+  background-size: 128%;
+  box-shadow:
+    0 16px 35px rgba(0,0,0,.45),
+    0 0 0 8px rgba(191,149,63,.07),
+    0 0 0 9px rgba(191,149,63,.35);
+  animation: sealBreath 3.5s ease-in-out infinite;
+}
+@keyframes sealBreath {
+  0%,100% { transform: scale(1); }
+  50% { transform: scale(1.025); }
+}
+.wax-seal:hover {
+  transform: scale(1.035);
+  box-shadow:
+    0 18px 40px rgba(0,0,0,.5),
+    0 0 0 8px rgba(191,149,63,.09),
+    0 0 0 9px rgba(191,149,63,.48);
+  animation: none;
+}
+.seal-container.hide {
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(.96);
+  transition: opacity .45s ease, transform .45s ease;
+}
+#envelope-wrapper.opened .env-front {
+  opacity: 0;
+  transform: scale(1.015);
+  pointer-events: none;
+}
+#envelope-wrapper.opened .env-card-container {
+  opacity: 1;
+}
+#envelope-wrapper.opened::before {
+  opacity: 0;
+  transition: opacity .6s ease;
+}
+#envelope-wrapper.opened {
+  background: var(--bg-color);
+  transition: background .6s ease;
+}
+@media (max-width: 600px) {
+  #envelope-wrapper::before { inset: 14px; }
+  .wax-seal { width: 155px; height: 155px; }
+  .seal-text-top, .seal-text-bottom { letter-spacing: 3px; font-size: .62rem; }
 }
