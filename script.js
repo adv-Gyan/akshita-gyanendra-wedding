@@ -329,6 +329,7 @@ document.addEventListener('DOMContentLoaded', () => {
 const waxSealBtn = document.getElementById('waxSealBtn');
   const openInvitationBtn = document.getElementById('openInvitationBtn');
   const sealContainer = document.getElementById('sealContainer');
+  const flapTop = document.getElementById('flapTop');
   const envelopeWrapper = document.getElementById('envelope-wrapper');
   const mainContent = document.getElementById('main-content');
 
@@ -339,23 +340,46 @@ const waxSealBtn = document.getElementById('waxSealBtn');
       if (opened) return;
       opened = true;
 
-      if (window.toggleMusicState && document.getElementById('bgMusic').paused) {
+      // Prevent repeated activation while the physical opening sequence runs.
+      if (waxSealBtn) waxSealBtn.style.pointerEvents = 'none';
+      if (openInvitationBtn) openInvitationBtn.style.pointerEvents = 'none';
+
+      // Preserve the existing music behaviour.
+      const bgMusic = document.getElementById('bgMusic');
+      if (window.toggleMusicState && bgMusic?.paused) {
         window.toggleMusicState(true);
       }
 
-      sealContainer?.classList.add('hide');
-      envelopeWrapper.classList.add('opened');
+      // 0–400 ms: subtle wax-seal impact.
+      waxSealBtn?.classList.add('seal-opening');
 
+      // ~300 ms: remove the seal/control layer before the flap takes over.
+      setTimeout(() => {
+        sealContainer?.classList.add('hide');
+      }, 300);
+
+      // ~450 ms: physically open the top envelope flap.
+      setTimeout(() => {
+        flapTop?.classList.add('open');
+      }, 450);
+
+      // ~500 ms: reveal the invitation card underneath while the flap opens.
+      setTimeout(() => {
+        envelopeWrapper.classList.add('opened');
+      }, 500);
+
+      // ~1600 ms: hand control to the existing wedding website.
       setTimeout(() => {
         if (mainContent) {
           mainContent.style.opacity = '1';
           mainContent.style.pointerEvents = 'auto';
         }
+
         document.body.classList.remove('locked');
         envelopeWrapper.style.position = 'absolute';
         window.scrollTo(0, 0);
         initReveals();
-      }, 650);
+      }, 1600);
     };
 
     waxSealBtn?.addEventListener('click', openInvitation);
