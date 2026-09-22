@@ -605,8 +605,14 @@ body.locked #musicToggle {
     );
   }
 
+  /* Preserve the portrait envelope artwork on phones. The source artwork is 809:1536,
+     so forcing it into the viewport's independent width/height stretches the border
+     and botanical details. Cover keeps the artwork proportional while the dark-red
+     envelope background absorbs the small crop at the edges. */
   .env-back {
-    background-size: 100% 100%;
+    background-size: cover;
+    background-position: center center;
+    background-color: #2c0104;
   }
 
   .wax-seal {
