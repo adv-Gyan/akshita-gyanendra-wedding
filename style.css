@@ -1117,20 +1117,18 @@ section { padding: 100px 20px; position: relative; }
   background-image: url('wax_seal.png');
   background-repeat: no-repeat;
   background-position: center center;
-  background-size: 100% 100%;
+  background-size: 135%;
   background-color: transparent;
-  box-shadow: none;
+  box-shadow: 0 10px 30px rgba(0,0,0,.6), inset 0 0 5px rgba(0,0,0,.3);
   cursor: pointer;
   pointer-events: auto;
-  display: block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-  transition: transform .25s ease, opacity .35s ease, filter .25s ease;
-}
-
-/* Remove the previously generated CSS seal rings and highlights. */
-.wax-seal::before,
-.wax-seal::after {
-  display: none !important;
+  transition: transform .25s cubic-bezier(.175,.885,.32,1.275),
+              box-shadow .25s ease,
+              opacity .35s ease;
 }
 
 .wax-seal:hover {
