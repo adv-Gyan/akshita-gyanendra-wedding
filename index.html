@@ -35,7 +35,7 @@
   <!-- ========== FULLSCREEN ENVELOPE & HERO ========== -->
   <div id="envelope-wrapper">
     <!-- Back of the envelope (inside) -->
-    <div class="env-back"></div>
+    <div class="env-back" aria-hidden="true"></div>
     
     <!-- The actual Invitation Card / Hero Section that sits inside -->
     <div class="env-card-container" id="inviteCard">
@@ -90,10 +90,15 @@
 
       <!-- Wax Seal Interactive Area -->
       <div class="seal-container" id="sealContainer">
-        <div class="wax-seal" id="waxSealBtn" role="button" tabindex="0" aria-label="Open wedding invitation"></div>
+        <div class="wax-seal" id="waxSealBtn" role="button" tabindex="0" aria-label="Open wedding invitation">
+          <span class="seal-flower seal-flower-top" aria-hidden="true">✦</span>
+          <span class="seal-monogram" aria-hidden="true"><span>G</span><span>A</span></span>
+          <span class="seal-branches" aria-hidden="true">❧ ❧</span>
+          <span class="seal-flower seal-flower-bottom" aria-hidden="true">✦</span>
+        </div>
         <button class="open-invitation-btn" id="openInvitationBtn" type="button">
-          <span>Open Invitation</span>
-          <span class="open-btn-ornament" aria-hidden="true">✦</span>
+          <span class="open-label">Open Invitation</span>
+          <span class="open-btn-ornament" aria-hidden="true"><i></i><b>✦</b><i></i></span>
         </button>
       </div>
     </div>
